@@ -37,7 +37,7 @@ const Caixa = styled.div`
 (isso aqui é caso essa pergunta surga pelos alunos.) */
 
 function soma(a, b) {
-  const futuro = Date.now() + 800 /* aqui estou criando uma const para que espere 2000 mili segundos 
+  const futuro = Date.now() + 2000 /* aqui estou criando uma const para que espere 2000 mili segundos 
    partir de um while que o Date.now()data atual seja maior que a data guardada na variavel futura que no caso vai ser
     a data atual + 2000 segundos, que é o mesmo que espera 2 segundos antes de executar o return */
   while (Date.now() < futuro) { }

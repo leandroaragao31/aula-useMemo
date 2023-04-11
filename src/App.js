@@ -3,14 +3,19 @@ import styled from 'styled-components'
 
 
 const Caixa = styled.div`
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  border:solid;
+  width:20%;
   background-color:${props => props.back};
 `
 
 //ordem de estrutra da explicação 
-// 1º criar o component com 3 input type number.
+// 1º criar o component com 3 input type number. **mudar passo
 
  /* 2º criar 3 states para setar o valor de cada input para ser atualizado conforme o state é alterado a conexão deverá ser feita com onChange
- e value para mostrar o valor de cada state no input.
+ e value para mostrar o valor de cada state no input. **mudar passo
  */
  /* 3º criar uma função fora do scopo da function App que vai retornar a soma de a + b,
  em seguida criar uma variavel que altere o parametroda função de soma dos primeiros states criados para const result = soma(n1, n2);, executar essa função e mostrar para alunos que está funcionando normal
@@ -37,8 +42,8 @@ const Caixa = styled.div`
 (isso aqui é caso essa pergunta surga pelos alunos.) */
 
 function soma(a, b) {
-  const futuro = Date.now() + 2000 /* aqui estou criando uma const para que espere 2000 mili segundos 
-   partir de um while que o Date.now()data atual seja maior que a data guardada na variavel futura que no caso vai ser
+  const futuro = Date.now() + 1000 /* aqui estou criando uma const para que espere 1000 mili segundos 
+   partir de um while que o Date.now()data atual seja menor que a data guardada na variavel futura que no caso vai ser
     a data atual + 2000 segundos, que é o mesmo que espera 2 segundos antes de executar o return */
   while (Date.now() < futuro) { }
   return a + b  /* porém isso causa um problema de renderização total do component
@@ -60,13 +65,13 @@ function App() {
     fazendo funcionar a logica de demora na rederização apenas no que foi setado na função soma */
 
 
-  /* const result = soma(n1, n2);  */
+ /* const Result = soma(n1, n2);  */
   //vamos simular isso em um calculo mais complexo que vai demorar um pouco mais de tempo para ser executado
 
 
 
   //Resolvendo com useMemo
-  const result = useMemo(() => soma(n1, n2), [n1, n2])
+   const result = useMemo(() => soma(n1, n2), [n1, n2]) 
   /*Nessa resolução eu tenho o valor pre caculado ou seja ele retorna um valor memorizado
      que ja foi executado antes em outro local
      e foi guardado em cache para ser chamado qnd as dependencias forem alteradas
@@ -96,7 +101,7 @@ function App() {
   return (
     <Caixa back={change}>
       <h1>UseMemo</h1>
-      <input
+ {/*      <input
         type="number"
         value={n1}
         onChange={(e) => setN1(Number(e.target.value))}
@@ -110,7 +115,13 @@ function App() {
         type="number"
         value={n3}
         onChange={(e) => setN3(Number(e.target.value))}
-      />
+      /> */}
+      <h2>{n1}</h2>
+      <button onClick={() => setN1(n1 + 1)}>N1</button>
+      <h2>{n2}</h2>
+      <button onClick={() => setN2(n2 + 1)}>N2</button>
+      <h2>{n3}</h2>
+      <button onClick={() => setN3(n3 + 1)}>N3</button>
       <h2>{result}</h2>
       <button onClick={() => setOpen(!open)}>Mudar</button>
     </Caixa>
